@@ -1,22 +1,18 @@
 import React from "react";
 import { useState } from "react";
-import Replays from "./Replays";
 import Allreplay from "./Allreplay";
 
 
 const Comment = () => {
-  const [input, setInput] = useState('');
-  const [datas, setDatas] = useState([])
-  const [count,setCount] = useState(1)
+  const [data, setData] = useState([]);
+  const [inputs, setInputs] = useState('');
   const ClickHandle = () => {
-    setCount(count +1)
-    const newComment = {id:count,body: input,nest:[]};
-    datas.push(newComment);
-    console.log(datas)
-    setDatas([...datas])
-    setInput('')
+    const newComment = {name:inputs, items:[]};
+    data.push(newComment);
+    console.log(data)
+    setData([...data])
+    setInputs('')
   };
-
 
   return (
     <>
@@ -25,8 +21,8 @@ const Comment = () => {
           className="p-1 w-60 rounded-xl pl-3 text-black"
           type="text"
           placeholder="Comment..."
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
+          value={inputs}
+          onChange={(event) => setInputs(event.target.value)}
         />
         <button
           className="ml-4 bg-blue-500 p-1 rounded-xl px-2"
@@ -36,8 +32,8 @@ const Comment = () => {
         </button>
       </div>
       <div>
-        {datas.map((item ) => {
-          return <Allreplay comment={item}/>;
+        {data.map((item) => {
+          return <Allreplay className="ml-6" item={item}/>;
         })}
       </div>
     </>
